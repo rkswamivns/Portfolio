@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vastu Expert | Harmonise Your Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vastu: {
+                            gold: '#D4AF37',
+                            darkGold: '#AA8822',
+                            earth: '#5B4B49',
+                            sand: '#F5F2EB',
+                            teal: '#1A4D4C',
+                            dark: '#222222',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Lora', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(34,34,34,0.6), rgba(34,34,34,0.4)), url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2000&auto=format&fit=crop')", // Calm sunrise vibe
+                        'mandala': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for smooth animations and aesthetics */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-primary {
+            background-color: #D4AF37;
+            color: #111;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #AA8822;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-outline {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: #D4AF37;
+            color: #fff;
+        }
+
+        .service-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Subtle fade-in animation for elements */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="font-body text-vastu-dark bg-vastu-sand antialiased bg-mandala">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-vastu-gold/20 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 sm:gap-4 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="Images/logo-nav.jpg" alt="RK Swami Logo" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-full border border-vastu-gold/50" onerror="this.onerror=null; this.src='https://placehold.co/100x100/D4AF37/222222?text=Logo';">
+                    <div class="flex flex-col justify-center">
+                        <span class="font-heading font-bold text-xl sm:text-2xl tracking-wider text-vastu-teal uppercase leading-none">RK <span class="text-vastu-gold">Swami</span></span>
+                        <span class="font-sans text-[0.6rem] sm:text-xs text-gray-500 font-semibold tracking-wide mt-1 uppercase">Science of Alignment • संरेखण का विज्ञान</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#philosophy" class="font-sans text-sm font-medium text-gray-700 hover:text-vastu-gold transition-colors">Philosophy</a>
+                    <a href="#about" class="font-sans text-sm font-medium text-gray-700 hover:text-vastu-gold transition-colors">Expert</a>
+                    <a href="#services" class="font-sans text-sm font-medium text-gray-700 hover:text-vastu-gold transition-colors">Services</a>
+                    <a href="mailto:rkswamiofficial@gmail.com?subject=Vastu%20Consultation%20Inquiry" class="font-sans text-sm font-semibold bg-vastu-teal text-white px-5 py-2 rounded-full hover:bg-opacity-90 transition-all shadow-md">Book Consult</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-vastu-teal hover:text-vastu-gold focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
+                <a href="#philosophy" class="block px-3 py-3 font-sans font-medium text-gray-700 hover:bg-vastu-sand rounded-md text-center">Philosophy</a>
+                <a href="#about" class="block px-3 py-3 font-sans font-medium text-gray-700 hover:bg-vastu-sand rounded-md text-center">About Expert</a>
+                <a href="#services" class="block px-3 py-3 font-sans font-medium text-gray-700 hover:bg-vastu-sand rounded-md text-center">Services</a>
+                <a href="mailto:rkswamiofficial@gmail.com?subject=Vastu%20Consultation%20Inquiry" class="block px-3 py-3 font-sans font-bold text-vastu-teal bg-vastu-gold/10 hover:bg-vastu-gold/20 rounded-md text-center mt-2">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <header id="home" class="relative h-screen min-h-[600px] flex items-center justify-center bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden" style="background-image: url('Images/hero-bg.jpg');">
+        <!-- Deep rich overlay for text readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#1A4D4C]/90 via-[#222222]/70 to-[#222222]/95"></div>
+        
+        <!-- Rotating Vastu Mandala background element -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-[0.07] pointer-events-none">
+            <img src="Images/mandala.png" alt="Vastu Mandala" class="w-[800px] md:w-[1200px] animate-spin" style="animation-duration: 120s;">
+        </div>
+        
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mt-16">
+            <!-- Sanskrit Invocation -->
+            <span class="block text-vastu-gold font-sans font-bold tracking-[0.1em] mb-2 fade-in-up text-lg sm:text-2xl" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+                ॥ ॐ वास्तोष्पते प्रति जानीह्यस्मान् ॥
+            </span>
+            <span class="block text-gray-300 font-sans font-medium tracking-[0.15em] uppercase mb-8 fade-in-up text-xs sm:text-sm delay-100">
+                O Lord of the Dwelling, Welcome Us
+            </span>
+            
+            <!-- Hindi & English Headline Mix -->
+            <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight fade-in-up delay-200 drop-shadow-lg">
+                सही दिशा, <span class="text-vastu-gold">खुशहाल जीवन</span>
+                <br/>
+                <span class="text-3xl sm:text-4xl md:text-5xl font-medium block mt-3 text-gray-100">Harmonise Your Space</span>
+            </h1>
+            
+            <!-- Sub-headline mixing English and Hindi -->
+            <p class="text-lg sm:text-xl text-gray-200 mb-10 max-w-3xl mx-auto font-light leading-relaxed fade-in-up delay-300 drop-shadow-md">
+                Unlock peace and prosperity through the ancient science of architecture. <br class="hidden md:block"/>
+                <strong class="text-vastu-gold font-normal">काशी (Varanasi) की पवित्र परंपराओं पर आधारित</strong>, we align your home and workspace with the <span class="font-medium text-white">पंचमहाभूत</span> (Five Elements of nature).
+            </p>
+            
+            <div class="fade-in-up delay-300">
+                <a href="mailto:rkswamiofficial@gmail.com?subject=Vastu%20Consultation%20Inquiry" class="inline-flex items-center gap-2 btn-primary font-sans font-bold text-sm sm:text-base px-8 py-4 rounded-full uppercase tracking-wider">
+                    <i class="fa-regular fa-envelope text-xl"></i>
+                    Book Your Consultation
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+            <a href="#philosophy" class="text-white/70 hover:text-vastu-gold transition-colors">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. THE PHILOSOPHY SECTION -->
+    <section id="philosophy" class="py-20 sm:py-28 bg-white relative overflow-hidden">
+        <!-- Decorative element -->
+        <div class="absolute top-0 right-0 opacity-5 w-64 h-64 transform translate-x-1/2 -translate-y-1/2">
+            <i class="fa-solid fa-compass text-[300px] text-vastu-gold"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="order-2 lg:order-1">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <!-- Placeholder for compass/elements image -->
+                        <img src="Images/philosophy-img.jpg" alt="Panchabhoota Elements" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-vastu-dark/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <div class="flex justify-between items-end">
+                                <div class="text-white font-heading">
+                                    <span class="block text-vastu-gold text-sm tracking-widest uppercase mb-1">Earth • Water • Fire • Air • Space</span>
+                                    <span class="text-2xl font-bold">The Five Elements</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-[1px] w-12 bg-vastu-gold"></div>
+                        <span class="font-sans text-vastu-gold font-semibold tracking-[0.15em] uppercase text-sm">Our Philosophy</span>
+                    </div>
+                    <h2 class="font-heading text-4xl sm:text-5xl font-bold text-vastu-teal mb-6">The Science of the <br/><span class="text-vastu-gold">Panchabhoota</span></h2>
+                    
+                    <div class="prose prose-lg text-vastu-earth font-body leading-relaxed">
+                        <p class="mb-6 text-xl text-gray-700">
+                            True Vastu is not about superstition; it is the profound, ancient architectural science of balancing the Five Elements.
+                        </p>
+                        <p class="mb-8">
+                            When Earth (Bhumi), Water (Jala), Fire (Agni), Air (Vayu), and Space (Akasha) are perfectly aligned within your property, they create a harmonious channel for positive cosmic energy. This perfect resonance forms the foundation for vibrant health, sustainable wealth, and profound peace of mind for everyone residing or working inside.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 mt-8">
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-vastu-sand flex items-center justify-center flex-shrink-0 border border-vastu-gold/30 text-vastu-gold">
+                                    <i class="fa-solid fa-leaf"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-vastu-teal">Harmonious Living</h4>
+                                    <p class="text-sm font-sans text-gray-600 mt-1">Balance energies for a peaceful home.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-vastu-sand flex items-center justify-center flex-shrink-0 border border-vastu-gold/30 text-vastu-gold">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-vastu-teal">Prosperity Focus</h4>
+                                    <p class="text-sm font-sans text-gray-600 mt-1">Unlock pathways to financial growth.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ABOUT THE EXPERT & INSTITUTION -->
+    <section id="about" class="py-20 sm:py-28 bg-vastu-sand relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="font-sans text-vastu-gold font-semibold tracking-[0.15em] uppercase text-sm">About The Expert</span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-vastu-teal mt-4 mb-6 leading-tight">
+                    Guidance Rooted in the <br/>Spiritual Heart of India
+                </h2>
+                <div class="h-1 w-24 bg-vastu-gold mx-auto rounded"></div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+                <!-- Watermark inside card -->
+                <div class="absolute -right-20 -bottom-20 opacity-[0.03] pointer-events-none">
+                    <img src="Images/mandala.png" alt="Mandala Watermark" class="w-[500px] h-[500px]">
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
+                    
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative z-10 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+                            <!-- Added onerror fallback to display a placeholder if image_0a810e.jpg is not found locally -->
+                            <img src="Images/image_0a810e.jpg" alt="Rajendrakumar K. Swami" class="w-full h-auto object-cover" style="object-position: top;" onerror="this.onerror=null; this.src='https://placehold.co/600x800/222222/D4AF37?text=RK+Swami';">
+                        </div>
+                        <!-- Decorative background frame -->
+                        <div class="absolute -top-4 -right-4 w-full h-full border-2 border-vastu-gold rounded-2xl z-0"></div>
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 z-20">
+                            <i class="fa-solid fa-location-dot text-vastu-gold text-2xl"></i>
+                            <div>
+                                <p class="text-xs font-sans text-gray-500 uppercase tracking-wide">Based In</p>
+                                <p class="font-heading font-bold text-vastu-teal">Varanasi, Kashi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <h3 class="font-heading text-2xl sm:text-3xl font-bold text-vastu-dark mb-2">Rajendrakumar K. Swami</h3>
+                        <p class="font-sans text-vastu-gold font-medium mb-6">Vastu Shastri & Financial Expert (Retd. Chief Manager, Central Bank of India)</p>
+                        
+                        <div class="space-y-4 font-body text-gray-700 text-[0.95rem] leading-relaxed">
+                            <p>
+                                Born in Solapur, Maharashtra, and now devotedly serving at the historic <strong>Jangamwadi Math in Varanasi</strong> under the divine guidance of Shri Shri Shri 1008 Dr. Chandrashekhar Shivacharya Mahaswamiji, RK Swami brings a unique blend of analytical rigor and spiritual wisdom to Vastu Shastra.
+                            </p>
+                            <p>
+                                His distinguished professional career spans nearly four decades in the banking sector. With qualifications including a B.Com, M.Com, LLB, and CAIIB, he served at Janseva Bank Pune before dedicating 38 years to the <strong>Central Bank of India</strong>, retiring as Chief Manager in Mumbai.
+                            </p>
+                            <p>
+                                Beyond his professional accolades, he is a dedicated family man. Supported by his wife, Sunita, they have raised highly accomplished children: Swapnil (Infosys, Germany), Swapnaja (ONGC, Ahmedabad), and Swarupa (Physician, USA).
+                            </p>
+                            <p class="font-medium text-vastu-teal border-l-4 border-vastu-gold pl-4 py-3 bg-vastu-gold/5 rounded-r-lg italic mt-4">
+                                "With a deep understanding of practical life challenges and spiritual energies, I strive to provide practical, results-driven remedies for your home and business, fostering peace and prosperity."
+                            </p>
+                        </div>
+                        
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
+                                <i class="fa-solid fa-graduation-cap text-vastu-gold"></i>
+                                <span class="font-sans text-xs font-medium text-vastu-dark">M.Com, LLB, CAIIB</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
+                                <i class="fa-solid fa-briefcase text-vastu-gold"></i>
+                                <span class="font-sans text-xs font-medium text-vastu-dark">40 Yrs Corporate Exp.</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
+                                <i class="fa-solid fa-om text-vastu-gold"></i>
+                                <span class="font-sans text-xs font-medium text-vastu-dark">Dedicated Seva (7+ Yrs)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. OUR SERVICES -->
+    <section id="services" class="py-20 sm:py-28 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="font-sans text-vastu-gold font-semibold tracking-[0.15em] uppercase text-sm">What We Offer</span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-vastu-teal mt-4 mb-6">
+                    Our Specialized Services
+                </h2>
+                <p class="font-body text-gray-600 text-lg">Tailored Vastu solutions designed to bring harmony and prosperity to every aspect of your life and business.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="service-card bg-vastu-sand rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="Images/service-residential.jpg" alt="Residential Vastu" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-vastu-teal/20"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur w-12 h-12 rounded-full flex items-center justify-center text-vastu-teal shadow-md">
+                            <i class="fa-solid fa-house-chimney text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading text-2xl font-bold text-vastu-teal mb-2">Residential Vastu</h3>
+                        <p class="font-sans text-vastu-gold text-sm font-semibold uppercase tracking-wider mb-4">Bring Harmony Home</p>
+                        <p class="font-body text-gray-600 mb-6 flex-grow">
+                            We analyse your floor plan to ensure your living space nurtures family health, marital harmony, and financial stability.
+                        </p>
+                        <ul class="space-y-2 font-sans text-sm text-gray-700 mb-6 border-t border-gray-200 pt-4">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-vastu-gold mt-1"></i> New home planning</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-vastu-gold mt-1"></i> Apartment correction</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-vastu-gold mt-1"></i> Ideal room placements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-vastu-teal text-white rounded-2xl overflow-hidden border border-vastu-teal flex flex-col h-full transform lg:-translate-y-4 shadow-xl">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="Images/service-commercial.jpg" alt="Commercial Vastu" class="w-full h-full object-cover opacity-60 mix-blend-overlay transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-vastu-gold w-12 h-12 rounded-full flex items-center justify-center text-vastu-dark shadow-md">
+                            <i class="fa-solid fa-building text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading text-2xl font-bold text-white mb-2">Commercial Vastu</h3>
+                        <p class="font-sans text-vastu-gold text-sm font-semibold uppercase tracking-wider mb-4">Design for Success</p>
+                        <p class="font-body text-gray-200 mb-6 flex-grow">
+                            Optimise your office, factory, or retail space to remove energy blockages, attract clients, and maximise business growth.
+                        </p>
+                        <ul class="space-y-2 font-sans text-sm text-gray-300 mb-6 border-t border-white/20 pt-4">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-arrow-right text-vastu-gold mt-1"></i> Executive seating arrangements</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-arrow-right text-vastu-gold mt-1"></i> Entrance & facade correction</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-arrow-right text-vastu-gold mt-1"></i> Factory machinery placement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-vastu-sand rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative bg-vastu-dark flex items-center justify-center">
+                         <img src="Images/service-online.jpg" alt="Online Consultation" class="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-vastu-dark/80 to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur w-12 h-12 rounded-full flex items-center justify-center text-vastu-teal shadow-md z-10">
+                            <i class="fa-solid fa-globe text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading text-2xl font-bold text-vastu-teal mb-2">Online Consultations</h3>
+                        <p class="font-sans text-vastu-gold text-sm font-semibold uppercase tracking-wider mb-4">Expertise Anywhere</p>
+                        <p class="font-body text-gray-600 mb-6 flex-grow">
+                            Distance is no barrier. Send us your digital floorplans and maps for highly accurate, step-by-step Vastu assessments globally.
+                        </p>
+                        <ul class="space-y-2 font-sans text-sm text-gray-700 mb-6 border-t border-gray-200 pt-4">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-video text-vastu-gold mt-1"></i> 1-on-1 video call analysis</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-map text-vastu-gold mt-1"></i> Digital floorplan assessment</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-file-pdf text-vastu-gold mt-1"></i> Detailed remedy report</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTACT & ONE-CLICK BOOKING -->
+    <footer id="contact" class="bg-vastu-dark text-white relative overflow-hidden pt-20 pb-10">
+        <!-- Vastu Mandala Watermark Background -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+            <img src="Images/mandala.png" alt="Mandala" class="w-[800px] h-[800px] object-contain">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 sm:p-12 text-center shadow-2xl mb-16">
+                <h2 class="font-heading text-3xl sm:text-5xl font-bold text-white mb-4">
+                    Ready to Transform <br class="hidden sm:block" /> <span class="text-vastu-gold">Your Space?</span>
+                </h2>
+                <p class="font-body text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
+                    Take the first step toward a balanced, prosperous life. Reach out today for a personalised property assessment.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <!-- Primary Button (WhatsApp) -->
+                    <a href="https://wa.me/919422321166?text=Pranam!%20I%20would%20like%20to%20book%20a%20Vastu%20consultation" target="_blank" 
+                       class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white font-sans font-bold px-8 py-4 rounded-full transition-all shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:shadow-[0_0_30px_rgba(37,211,102,0.5)] transform hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Chat on WhatsApp</span>
+                    </a>
+                    
+                    <!-- Secondary Button (Email) -->
+                    <a href="mailto:rkswamiofficial@gmail.com?subject=Vastu%20Consultation%20Inquiry" 
+                       class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-transparent border-2 border-vastu-gold text-vastu-gold hover:bg-vastu-gold hover:text-vastu-dark font-sans font-bold px-8 py-4 rounded-full transition-all">
+                        <i class="fa-regular fa-envelope text-xl"></i>
+                        <span>Email for Appointment</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Details -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left border-t border-white/10 pt-10">
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center gap-4 mb-4 justify-center md:justify-start">
+                        <img src="Images/logo-footer.jpg" alt="RK Swami Logo" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full border border-vastu-gold/50 bg-white/10" onerror="this.onerror=null; this.src='https://placehold.co/100x100/D4AF37/222222?text=Logo';">
+                        <div class="flex flex-col text-left">
+                            <span class="font-heading font-bold text-2xl sm:text-3xl tracking-widest uppercase text-white leading-none">RK <span class="text-vastu-gold">Swami</span></span>
+                            <span class="font-sans text-[0.65rem] text-vastu-gold font-medium tracking-wider mt-1.5 uppercase">Science of Alignment • संरेखण का विज्ञान</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-body text-gray-400 max-w-xs text-center md:text-left">
+                        Authentic Vastu Shastra consultations bridging ancient Vedic science with modern architecture.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="font-sans font-semibold text-white tracking-wider uppercase text-sm mb-4">Contact Info</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 justify-center md:justify-start">
+                            <i class="fa-solid fa-location-dot text-vastu-gold mt-1"></i>
+                            <span class="font-body text-gray-300 text-sm">Jangamwadi Math,<br/>Varanasi, UP, India</span>
+                        </li>
+                        <li class="flex items-center gap-3 justify-center md:justify-start">
+                            <i class="fa-solid fa-phone text-vastu-gold"></i>
+                            <span class="font-body text-gray-300 text-sm">+91 94223 21166<br/>+91 90215 69076</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="font-sans font-semibold text-white tracking-wider uppercase text-sm mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-center md:text-left">
+                        <li><a href="#philosophy" class="font-body text-sm text-gray-400 hover:text-vastu-gold transition-colors">The Philosophy</a></li>
+                        <li><a href="#about" class="font-body text-sm text-gray-400 hover:text-vastu-gold transition-colors">About Expert</a></li>
+                        <li><a href="#services" class="font-body text-sm text-gray-400 hover:text-vastu-gold transition-colors">Services</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-white/5 text-center flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="font-sans text-xs text-gray-500">
+                    &copy; 2026 Rajendrakumar K. Swami - Vastu Shastri. All rights reserved.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-vastu-gold hover:bg-white/10 transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/p/DcVVDqeEzoT/?utm_source=ig_web_copy_link&igsi=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-vastu-gold hover:bg-white/10 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com/@rkswami_official" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-vastu-gold hover:bg-white/10 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/90', 'bg-white/98');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/98', 'bg-white/90');
+            }
+        });
+
+        // Simple Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Optional: Add classes to elements you want to animate on scroll
+        // document.querySelectorAll('.service-card, .prose').forEach((el) => {
+        //     el.style.opacity = '0'; // Initial state
+        //     observer.observe(el);
+        // });
+    </script>
+</body>
+</html>
